@@ -13,7 +13,7 @@
 #include "types.h"
 
 #include <linphonecore.h>
-#include "private.h" /*coreapi/private.h, needed for LINPHONE_VERSION */
+//#include "private.h" /*coreapi/private.h, needed for LINPHONE_VERSION */
 
 
 #ifndef H_linphoneAPI
@@ -46,6 +46,8 @@ public:
 	void call_embedVideoPreview(void);
     void call_setResolution(int, int);
     void call_setResolutionByName(std::string);
+    void call_setAudioCodec(std::string);
+    void call_linphonecsh(std::string);
 
 	// Properties methods
 	bool get_running(void);
@@ -57,6 +59,10 @@ public:
 	void set_videoEnabled(bool x) { Lo_; linphone_core_enable_video(lin, x, x); }
 	bool get_videoPreviewEnabled(void) { Lo_; return linphone_core_video_preview_enabled(lin); }
 	void set_videoPreviewEnabled(bool x) { Lo_; linphone_core_enable_video_preview(lin, x); }
+
+	int get_port(void) { Lo_; return linphone_core_get_sip_port(lin); }
+	void set_port(int x) { Lo_; linphone_core_set_sip_port(lin, x); }
+
 	unsigned long get_videoNativeId(void) { Lo_; return linphone_core_get_native_video_window_id(lin); }
 	void set_videoNativeId(unsigned long x) { Lo_; linphone_core_set_native_video_window_id(lin, x); }
 	unsigned long get_videoPreviewNativeId(void) { Lo_; return linphone_core_get_native_preview_window_id(lin); }
