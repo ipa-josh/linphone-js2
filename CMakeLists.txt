@@ -22,10 +22,10 @@ INCLUDE_DIRECTORIES(${PLUGIN_INCLUDE_DIRS})
 # add linphone core includes
 SET(LINPHONE_CORE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/linphone/")
 INCLUDE_DIRECTORIES(
-  ${LINPHONE_CORE_PATH}/oRTP/include
-  ${LINPHONE_CORE_PATH}/mediastreamer2/include
-  ${LINPHONE_CORE_PATH}/coreapi
-  ${LINPHONE_CORE_PATH}/
+  /usr/include/ortp
+  /usr/include/mediastreamer2
+  /usr/include/linphone
+#  ${LINPHONE_CORE_PATH}/
 )
 
 # Generated files are stored in ${GENERATED} by the project configuration
