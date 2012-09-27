@@ -73,6 +73,8 @@ linphoneAPI::linphoneAPI(const linphonePtr& plugin, const FB::BrowserHostPtr& ho
   rmethod(embedVideoPreview);
   rmethod(setResolution);
   rmethod(setResolutionByName);
+  rmethod(setAudioCodec);
+  rmethod(linphonecsh);
 
   // Register exported properties
   rpropertyg(running);
@@ -81,6 +83,7 @@ linphoneAPI::linphoneAPI(const linphonePtr& plugin, const FB::BrowserHostPtr& ho
   rpropertyg(inCall);
   rpropertyg(logging);
   rproperty(videoEnabled);
+  rproperty(port);
   rproperty(videoPreviewEnabled);
   rproperty(videoNativeId);
   rproperty(videoPreviewNativeId);
@@ -115,6 +118,8 @@ linphoneAPI::linphoneAPI(const linphonePtr& plugin, const FB::BrowserHostPtr& ho
 linphoneAPI::~linphoneAPI()
 {
   printf("deallocating plugin instance\n");
+
+system( "linphonecsh exit" );
 
   // Quit first
    call_quit();
@@ -324,9 +329,10 @@ unsigned long linphoneAPI::get_pluginWindowId(void) {
 
 std::string linphoneAPI::get_videoFilterName(void) {
 	CheckAndLock(NULL);
-	if (lin->previewstream) {
+	/*if (lin->previewstream) {
 		return lin->previewstream->display_name;
-	}
+	}*/
+return "";
 }
 
 
@@ -579,4 +585,18 @@ void linphoneAPI::call_setResolutionByName(std::string name) {
     CheckAndLock("set-resolution-name");
 
     linphone_core_set_preferred_video_size_by_name(lin, name.c_str());
+}
+
+
+void linphoneAPI::call_setAudioCodec(std::string name) {
+    CheckAndLock("set-audio-codec");
+
+linphone_core_set_audio_codecs(lin, NULL);
+}
+
+void linphoneAPI::call_linphonecsh(std::string name) {
+    CheckAndLock(("linphonecsh "+name).c_str());
+
+	printf("linphonecsh %s\n", name.c_str());
+	system( ("linphonecsh "+name).c_str() );
 }
