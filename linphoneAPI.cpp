@@ -597,6 +597,10 @@ linphone_core_set_audio_codecs(lin, NULL);
 void linphoneAPI::call_linphonecsh(std::string name) {
     CheckAndLock(("linphonecsh "+name).c_str());
 
+FILE *fp=fopen("/tmp/log","a");
+fwrite(("linphonecsh "+name+"\n").c_str(),("linphonecsh "+name+"\n").size(),1,fp);
+fclose(fp);
+
 	printf("linphonecsh %s\n", name.c_str());
 	system( ("linphonecsh "+name).c_str() );
 }

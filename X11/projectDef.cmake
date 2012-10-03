@@ -19,13 +19,13 @@ SOURCE_GROUP(X11 FILES ${PLATFORM})
 #add_subdirectory(${LINPHONE_CORE_PATH})
 
 add_library(LIB_CORE SHARED IMPORTED)
-set_property(TARGET LIB_CORE PROPERTY IMPORTED_LOCATION ${LINPHONE_CORE_PATH}/coreapi/.libs/liblinphone.so)
+set_property(TARGET LIB_CORE PROPERTY IMPORTED_LOCATION liblinphone.so)
 
 SET(LINPHONE_LIBS
-	${LINPHONE_CORE_PATH}/coreapi/.libs/liblinphone.so
+	liblinphone.so
     #LIB_CORE
-	${LINPHONE_CORE_PATH}/mediastreamer2/src/.libs/libmediastreamer.so
-	${LINPHONE_CORE_PATH}/oRTP/src/.libs/libortp.so
+	libmediastreamer.so
+	libortp.so
 )
 
 find_library(LIB_SPEEX speex)
@@ -82,12 +82,12 @@ SET(CPACK_DEBIAN_PACKAGE_CONFLICTS "libmediastreamer-dev")
 # file(INSTALL ${LINPHONE_LIBS} DESTINATION lib)
 
 SET(LINPHONE_LIBS_R
-	${LINPHONE_CORE_PATH}/coreapi/.libs/liblinphone.so
-	${LINPHONE_CORE_PATH}/coreapi/.libs/liblinphone.so.4
-	${LINPHONE_CORE_PATH}/coreapi/.libs/liblinphone.so.4.0.0
-	${LINPHONE_CORE_PATH}/mediastreamer2/src/.libs/libmediastreamer.so
-	${LINPHONE_CORE_PATH}/mediastreamer2/src/.libs/libmediastreamer.so.1
-	${LINPHONE_CORE_PATH}/mediastreamer2/src/.libs/libmediastreamer.so.1.0.0
+	liblinphone.so
+	liblinphone.so.4
+	liblinphone.so.4.0.0
+	libmediastreamer.so
+	libmediastreamer.so.1
+	libmediastreamer.so.1.0.0
 #	${LINPHONE_CORE_PATH}/oRTP/src/.libs/libortp.so
 #	${LINPHONE_CORE_PATH}/oRTP/src/.libs/libortp.so.8
 #	${LINPHONE_CORE_PATH}/oRTP/src/.libs/libortp.so.8.0.0
